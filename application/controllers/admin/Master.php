@@ -341,9 +341,14 @@ class Master extends CI_Controller {
 	{
 		$data_tampil = array();
 		$no = 1;
-		$get_data = $this->Main_model->getSelectedData('user_sitac a', 'a.*')->result();
+		$get_data = $this->Main_model->getSelectedData('user_sitac a', 'a.*,b.nama AS tl', '', '', '', '', '', array(
+			'table' => 'user_tl b',
+			'on' => 'a.tl=b.user_id',
+			'pos' => 'LEFT'
+		))->result();
 		foreach ($get_data as $key => $value) {
 			$isi['no'] = $no++.'.';
+			$isi['tl'] = $value->tl;
 			$isi['nama'] = $value->nama;
 			$isi['alamat'] = $value->alamat;
 			$isi['no_hp'] = $value->no_hp;
@@ -526,6 +531,7 @@ class Master extends CI_Controller {
 			}elseif($this->input->post('role')=='4'){
 				$data_insert3 = array(
 					'user_id' => $get_user_id['id']+1,
+					'tl' => $this->input->post('tl'),
 					'nama' => $this->input->post('nama'),
 					'alamat' => $this->input->post('alamat'),
 					'no_hp' => $this->input->post('no_hp')
@@ -775,7 +781,10 @@ class Master extends CI_Controller {
 		$cek = $this->Main_model->getSelectedData('spbu a', 'a.*', array('a.kode_spbu'=>$this->input->post('kode_spbu')))->result();
 		if($cek==NULL){
 			$this->db->trans_start();
+			$get_last_id = $this->Main_model->getLastID('spbu','id_spbu');
+			$new_id = $get_last_id['id_spbu']+1;
 			$data_insert1 = array(
+				'id_spbu' => $new_id,
 				'kode_spbu' => $this->input->post('kode_spbu'),
 				'alamat' => $this->input->post('alamat'),
 				'id_provinsi' => $this->input->post('id_provinsi'),
@@ -1051,6 +1060,35 @@ class Master extends CI_Controller {
 			"aaData"=>$data_tampil);
 		echo json_encode($results);
 	}
+	public function json_data_servis()
+	{
+		$get_data = $this->Main_model->getSelectedData('servis_detail a', 'a.*,b.tanggal_pengajuan', array('md5(b.id_spbu)'=>$this->input->post('id_spbu')), '', '', '', '', array(
+			'table' => 'servis b',
+			'on' => 'a.id_servis=b.id_servis',
+			'pos' => 'LEFT'
+		))->result();
+		$data_tampil = array();
+		$no = 1;
+		foreach ($get_data as $key => $value) {
+			$isi['no'] = $no++.'.';
+			$isi['barang'] = $value->nama_barang;
+			$isi['merk'] = $value->merk;
+			$isi['jumlah'] = number_format($value->jumlah,0);
+			if($value->harga==NULL OR $value->harga==0){
+				$isi['harga'] = '-';
+			}else{
+				$isi['harga'] = 'Rp '.number_format($value->harga,2);
+			}
+			$isi['tanggal'] = $this->Main_model->convert_tanggal(substr($value->tanggal_pengajuan,0,10));
+			$data_tampil[] = $isi;
+		}
+		$results = array(
+			"sEcho" => 1,
+			"iTotalRecords" => count($data_tampil),
+			"iTotalDisplayRecords" => count($data_tampil),
+			"aaData"=>$data_tampil);
+		echo json_encode($results);
+	}
 	public function nonaktifkan_spbu()
 	{
 		$this->db->trans_start();
@@ -1299,6 +1337,7 @@ class Master extends CI_Controller {
 	{
 		if($this->input->post('modul')=='form_tambah_data_pengguna'){
 			$data['id'] = $this->input->post('id');
+			$data['tl'] = $this->Main_model->getSelectedData('user_tl a', 'a.*')->result();
 			$this->load->view('admin/master/ajax_page/ajax_form_tambah_data_pengguna',$data);
 		}elseif($this->input->post('modul')=='modul_ubah_data_investor'){
 			$pecahdata = explode('/',$this->input->post('id'));

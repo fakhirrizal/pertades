@@ -37,9 +37,9 @@
                     <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                         <div class="authentication-form mx-auto">
                             <div class="logo-centered">
-                                <a href="../index.html"><img src="<?= base_url(); ?>assets/src/img/brand.svg" alt=""></a>
+                                <!-- <a href="../index.html"><img src="<?= base_url(); ?>assets/src/img/brand.svg" alt=""></a> -->
                             </div>
-                            <h3>Sign In to ThemeKit</h3>
+                            <!-- <h3>Sign In to ThemeKit</h3> -->
                             <p>Happy to see you again!</p>
                             <form action="<?= site_url('login_process'); ?>" method='post'>
                                 <?= $this->session->flashdata('error') ?>
@@ -60,7 +60,7 @@
                                         </label>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="forgot-password.html">Forgot Password ?</a>
+                                        <a href="#">Forgot Password ?</a>
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
@@ -81,7 +81,7 @@
                                 }
                             </script>
                             <div class="register">
-                                <p>Don't have an account? <a href="register.html">Create an account</a></p>
+                                <p>Don't have an account? <a href="#">Create an account</a></p>
                             </div>
                         </div>
                     </div>

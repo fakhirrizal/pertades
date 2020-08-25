@@ -79,6 +79,17 @@ elseif($id=='3'){
 elseif($id=='4'){
 ?>
     <div class="form-group">
+        <label>Team Leader <font color='red'>*</font></label>
+        <select class="form-control" name='tl' required>
+            <option value=''>-- Pilih --</option>
+            <?php
+            foreach ($tl as $key => $value) {
+                echo"<option value='".$value->user_id."'>".$value->nama."</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
         <label>Nama <font color='red'>*</font></label>
         <input type="text" class="form-control" name='nama' placeholder="Nama lengkap sesuai dengan KTP" required>
     </div>

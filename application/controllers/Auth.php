@@ -31,7 +31,7 @@ class Auth extends CI_Controller {
 	}
 	public function login_process()
 	{
-		$cek = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'), "a.is_active" => '1', 'a.deleted' => '0'), 'a.username ASC')->result();
+		$cek = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'), "a.is_active" => '1', 'a.deleted' => '0'), 'a.username ASC', '1')->result();
 		if($cek!=NULL){
 			$cek2 = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'),'pass' => $this->input->post('password'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC','','','','')->result();
 			if($cek2!=NULL){
@@ -48,7 +48,7 @@ class Auth extends CI_Controller {
 					);
 					$this->Main_model->updateData('user',$data_log,array('id'=>$value->id));
 					$this->Main_model->log_activity($value->id,'Login to system','Login via web browser',$this->input->post('location'));
-					$role = $this->Main_model->getSelectedData('user_to_role a', 'b.route,a.user_id,a.role_id', array('a.user_id'=>$value->id,'b.deleted'=>'0'), "",'','','',array(
+					$role = $this->Main_model->getSelectedData('user_to_role a', 'b.route,a.user_id,a.role_id', array('a.user_id'=>$value->id,'b.deleted'=>'0'), "",'1','','',array(
 						'table' => 'user_role b',
 						'on' => 'a.role_id=b.id',
 						'pos' => 'LEFT'

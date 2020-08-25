@@ -116,6 +116,7 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;" width="1%"> # </th>
+                                        <th style="text-align: center;"> Team Leader </th>
                                         <th style="text-align: center;"> Nama </th>
                                         <th style="text-align: center;"> Alamat </th>
                                         <th style="text-align: center;"> No. HP </th>
@@ -133,6 +134,7 @@
                                         },
                                         "aoColumns": [
                                                     { mData: 'no', sClass: "alignCenter" },
+                                                    { mData: 'tl' },
                                                     { mData: 'nama' },
                                                     { mData: 'alamat', sClass: "alignCenter" },
                                                     { mData: 'no_hp', sClass: "alignCenter" },

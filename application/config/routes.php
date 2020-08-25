@@ -107,6 +107,9 @@ $route['admin_side/data_penjualan'] = 'admin/Transaction/data_penjualan';
 
 $route['admin_side/rekap_data'] = 'admin/Report/rekap_data';
 
+$route['admin_side/maintenance'] = 'admin/Maintenance/rekap_data';
+$route['admin_side/detail_servis/(:any)'] = 'admin/maintenance/detail_servis/$1';
+
 $route['admin_side/pembukuan'] = 'admin/Accountancy';
 $route['admin_side/detail_keuangan/(:any)'] = 'admin/Accountancy/detail_keuangan/$1';
 

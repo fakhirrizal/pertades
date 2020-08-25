@@ -28,6 +28,7 @@ class Accountancy extends CI_Controller {
 			$isi['alamat'] = $value->alamat;
 			$isi['no_hp'] = $value->no_hp;
 			$isi['saldo'] = 'Rp '.number_format($value->saldo,2);
+			$isi['operasional'] = 'Rp '.number_format($value->anggaran_operasional,2);
 			$isi['aksi'] =	'
 			<div class="dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Aksi <i class="ik ik-chevron-down"></i></a>
@@ -82,9 +83,14 @@ class Accountancy extends CI_Controller {
 	{
 		$data_tampil = array();
 		$no = 1;
-		$get_data = $this->Main_model->getSelectedData('user_sitac a', 'a.*')->result();
+		$get_data = $this->Main_model->getSelectedData('user_sitac a', 'a.*,b.nama AS tl', '', '', '', '', '', array(
+			'table' => 'user_tl b',
+			'on' => 'a.tl=b.user_id',
+			'pos' => 'LEFT'
+		))->result();
 		foreach ($get_data as $key => $value) {
 			$isi['no'] = $no++.'.';
+			$isi['tl'] = $value->tl;
 			$isi['nama'] = $value->nama;
 			$isi['alamat'] = $value->alamat;
 			$isi['no_hp'] = $value->no_hp;

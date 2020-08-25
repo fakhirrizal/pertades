@@ -146,10 +146,10 @@ if(($this->session->userdata('id'))==NULL){
                 <div class="app-sidebar colored">
                     <div class="sidebar-header">
                         <a class="header-brand" href="<?= base_url(); ?>admin_side/beranda">
-                            <div class="logo-img">
+                            <!-- <div class="logo-img">
                                <img src="<?= base_url(); ?>assets/src/img/brand-white.svg" class="header-brand-img" alt="lavalite"> 
-                            </div>
-                            <span class="text">ThemeKit</span>
+                            </div> -->
+                            <span class="text">Pertades</span>
                         </a>
                         <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -181,6 +181,9 @@ if(($this->session->userdata('id'))==NULL){
                                 </div>
                                 <div class="nav-item <?php if($parent=='accountancy'){echo 'active';}else{echo '';} ?>">
                                     <a href="<?= base_url().'admin_side/pembukuan'; ?>"><i class="ik ik-book"></i><span>Pembukuan</span></a>
+                                </div>
+                                <div class="nav-item <?php if($parent=='maintenance'){echo 'active';}else{echo '';} ?>">
+                                    <a href="<?= base_url().'admin_side/maintenance'; ?>"><i class="ik ik-server"></i><span>Maintenance</span></a>
                                 </div>
                                 <div class="nav-item <?php if($parent=='log_activity'){echo 'active';}else{echo '';} ?>">
                                     <a href="<?= base_url().'admin_side/log_aktifitas'; ?>"><i class="ik ik-monitor"></i><span>Log Aktifitas</span></a>

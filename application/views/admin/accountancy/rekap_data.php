@@ -44,7 +44,8 @@
                                         <th style="text-align: center;"> Nama </th>
                                         <th style="text-align: center;"> Alamat </th>
                                         <th style="text-align: center;"> No. HP </th>
-                                        <th style="text-align: center;"> Saldo </th>
+                                        <th style="text-align: center;"> Saldo Personal </th>
+                                        <th style="text-align: center;"> Saldo Operasional </th>
                                         <th style="text-align: center;" width="1%"> Aksi </th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,7 @@
                                                     { mData: 'alamat', sClass: "alignCenter" },
                                                     { mData: 'no_hp', sClass: "alignCenter" },
 													{ mData: 'saldo', sClass: "alignCenter" },
+													{ mData: 'operasional', sClass: "alignCenter" },
                                                     { mData: 'aksi', sClass: "alignCenter" }
                                                 ]
                                     });
@@ -119,6 +121,7 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;" width="1%"> # </th>
+                                        <th style="text-align: center;"> Team Leader </th>
                                         <th style="text-align: center;"> Nama </th>
                                         <th style="text-align: center;"> Alamat </th>
                                         <th style="text-align: center;"> No. HP </th>
@@ -137,6 +140,7 @@
                                         },
                                         "aoColumns": [
                                                     { mData: 'no', sClass: "alignCenter" },
+                                                    { mData: 'tl' },
                                                     { mData: 'nama' },
                                                     { mData: 'alamat', sClass: "alignCenter" },
                                                     { mData: 'no_hp', sClass: "alignCenter" },

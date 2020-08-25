@@ -209,4 +209,51 @@
             </div>
         </div>
     </div>
+    <div class="col-xl-12 col-md-12">
+        <div class="card table-card">
+            <div class="card-header">
+                <h3>Riwayat Servis</h3>
+            </div>
+            <div class="card-block">
+                <div class="card-body table-border-style">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id='data_servis'>
+                            <thead>
+                                <tr>
+                                    <th style='text-align:center'>#</th>
+                                    <th style='text-align:center'>Nama Barang</th>
+                                    <th style='text-align:center'>Merk</th>
+                                    <th style='text-align:center'>Jumlah</th>
+                                    <th style='text-align:center'>Harga</th>
+                                    <th style='text-align:center'>Tanggal Pengajuan</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <script type="text/javascript" language="javascript" >
+                            $(document).ready(function(){
+                                $('#data_servis').dataTable({
+                                    "order": [[ 0, "asc" ]],
+                                    "bProcessing": true,
+                                    "ajax" : {
+                                        type:"POST",
+                                        url:"<?= site_url('admin/Master/json_data_servis'); ?>",
+                                        data: {id_spbu:'<?= $this->uri->segment(3); ?>'}
+                                    },
+                                    "aoColumns": [
+                                                { mData: 'no', sClass: "alignCenter" },
+                                                { mData: 'barang', sClass: "alignCenter" },
+                                                { mData: 'merk', sClass: "alignCenter" },
+                                                { mData: 'jumlah', sClass: "alignCenter" },
+                                                { mData: 'harga', sClass: "alignCenter" },
+                                                { mData: 'tanggal', sClass: "alignCenter" }
+                                            ]
+                                });
+
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
